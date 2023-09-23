@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+     
+     // Crear tabla por artisan
+     
+     //php artisan make:migration create_news_table ---> Creamos Tablas
+     //php artisan migrate:fresh  ----------> actualiza DB
+
+
+    public function up(): void
+    {
+        Schema::create('news', function (Blueprint $table) {
+
+            $table->id('news_id');
+            $table->string('titulo', 100);
+            $table->string('subTitulo', 100);
+            $table->string('parrafo', 5000);
+            $table->string('img', 100)->nullable();
+            $table->date('fecha_creacion');
+            $table->string('editor');
+            $table->timestamps();
+            
+        });
+    }
+
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('news');
+    }
+};
