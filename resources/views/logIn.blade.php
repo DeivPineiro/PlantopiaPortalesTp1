@@ -2,7 +2,7 @@
 @section('title', 'LogIn')
 @section('content')
 
-<h1>Log In</h1>
+<h1>Log Innnnnnn</h1>
 
 @endsection
 
