@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Noticia;
+
 class HomeController extends Controller
 {
 
@@ -16,8 +18,10 @@ class HomeController extends Controller
     public function news()
     {
 
-        return view('news');
-
+        $news = Noticia::all();
+              
+       return view('news',['news' => $news]);
+    
     }
 
     public function logIn()

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Noticia;
+
 class AdminController extends Controller
 {
 
@@ -9,11 +11,14 @@ class AdminController extends Controller
     public function index()
     {
 
-        return view('admin/index');
+//Para probar si trae datos
+       $news = Noticia::all();   
+
+       return view('admin/index', ['news' => $news]);     
+
 
     }
 
+
+
 }
-
-
-?>
