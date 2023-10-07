@@ -25,7 +25,7 @@
           <a class="nav-link" href="<?=url('/logIn');?>">Iniciar sesión</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?=url('/admin/dashBoard');?>">Administrador</a>
+          <a class="nav-link" href="<?=url('/admin/noticias');?>">Administrador</a>
         </li>
       
       </ul>

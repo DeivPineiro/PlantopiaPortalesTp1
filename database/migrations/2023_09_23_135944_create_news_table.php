@@ -15,7 +15,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('noticias', function (Blueprint $table) {
 
             $table->id('news_id');
             $table->string('titulo', 100);
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('img', 100)->nullable();
             $table->date('fecha_creacion');
             $table->string('editor');
+            $table->boolean('publicado');
             $table->timestamps();
             
         });
