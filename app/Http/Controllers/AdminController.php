@@ -36,6 +36,18 @@ class AdminController extends Controller
 
         $data = $request->except(['_token']);
 
+        //Si hay imagen que cargar 
+        //php artisan storage:link
+        
+        if($request->hasFile('img'))
+        {
+            // la guarda... obvio
+           $data['img'] = $request->file('img')->store('imgs');
+
+        }
+
+
+
         $request->validate([
 
             'titulo' => 'required|min:2',

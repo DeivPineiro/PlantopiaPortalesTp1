@@ -23,6 +23,20 @@
 
             <p>{{ $new->parrafo }}</p>
 
+            <div>
+
+                {{-- php artisan storage:link  1:20:00 clase 7--}}
+                @if($new->img)
+                
+                <img src="{{url('storage/'. $new->img)}}" alt="{{$new->descripcion_img}}">
+                                    
+                @else
+                
+                <p>Noticia no tiene imagen cargada</p>
+
+                @endif
+                {{-- image.intervention.io --}}
+            </div>
 
         </div>
 

@@ -39,7 +39,7 @@ class Noticia extends Model
 
     protected $table = "noticias";
     protected $primaryKey = "news_id";
-    protected $fillable = ['titulo', 'subTitulo', 'parrafo', 'img', 'fecha_creacion', 'editor', 'publicado' ];
+    protected $fillable = ['titulo', 'subTitulo', 'parrafo', 'img','descripcion_img', 'fecha_creacion', 'editor', 'publicado' ];
     
 
 }

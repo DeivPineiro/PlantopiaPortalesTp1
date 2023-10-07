@@ -15,7 +15,7 @@
 
     <div class="container p-4">
 
-        <form action="{{ url('/admin/noticias/' . $new->news_id . '/editar') }}" method="POST">
+        <form action="{{ url('/admin/noticias/' . $new->news_id . '/editar') }}" method="POST" enctype="multipart/form-data">
 
          
             @csrf {{-- Token de seguridad para evitar peticiones de otro sitio --}}
@@ -75,13 +75,27 @@
             <p class="text-danger" id="error-parrafo">{{$errors->first('parrafo')}}</p>
             @endif
 
-{{-- Imagen --}}
+{{-- img --}}
 
-            <label for="imagen" class="form-label">Imagen</label>
-            <input type="file" id="imagen" name="imagen" class="form-control">
+            <label for="img" class="form-label">img</label>
+            <input type="file" id="img" name="img" class="form-control">
 
-            @if($errors->has('imagen'))
-            <p class="text-danger" id="error-imagen">{{$errors->first('imagen')}}</p>
+            @if($errors->has('img'))
+            <p class="text-danger" id="error-img">{{$errors->first('img')}}</p>
+            @endif
+
+            {{-- descripcion Img --}}
+
+            <label for="descripcion_img" class="form-label">Descripción imagen</label>
+            <input type="text" id="descripcion_img" name="descripcion_img" class="form-control @error('descripcion_img') is-invalid @enderror"
+                value="{{ old('descripcion_img', $new->descripcion_img) }}"
+                @error('descripcion_img')
+            aria-describedby="error-descripcion_img"
+            aria-invalid="true"
+            @enderror>
+
+            @if ($errors->has('descripcion_img'))
+                <p class="text-danger" id="error-descripcion_img">{{ $errors->first('descripcion_img') }}</p>
             @endif
 
 {{-- editor --}}

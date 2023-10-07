@@ -22,6 +22,22 @@
 <h3 class="container p-4">{{$n->subTitulo}}</h3>
 
 <p>{{$n->parrafo}}</p>
+
+<div>
+
+    {{-- php artisan storage:link  1:20:00 clase 7--}}
+    @if($n->img)
+    
+    <img src="{{url('storage/'. $n->img)}}" alt="{{$n->descripcion_img}}">
+                        
+    @else
+    
+    <p>Noticia no tiene imagen cargada</p>
+
+    @endif
+    {{-- image.intervention.io --}}
+</div>
+
 <?php } ?>
 @endforeach
 
