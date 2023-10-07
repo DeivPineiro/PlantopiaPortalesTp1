@@ -61,4 +61,15 @@ class AdminController extends Controller
         return redirect('/admin/noticias');
 
     }
+
+    public function processDelete(int $id) 
+    
+    {
+
+      $news = Noticia::findOrFail($id);
+      $new->delete();
+      return redirect('/admin/noticias')
+          ->with('status.message', 'La noticia <b>' . n($new->title) .'</b> fue eliminada');
+
+    }
 }

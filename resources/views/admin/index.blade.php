@@ -41,7 +41,10 @@
                 <td>{{$n->editor  }}</td>
                 <td>{{$n->publicado}}</td>
                 <td><a href="{{url('admin/noticias/' . $n->news_id)}}" class="btn btn-primary">...</a></td>
-                <td></td>
+                <td><form action="{{url('admin/noticias/' . $n->news_id . '/eliminar')}}" method="POST"></form>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form></td>
+               
             </tr>
 
            @endforeach

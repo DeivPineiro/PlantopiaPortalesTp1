@@ -19,4 +19,4 @@ Route::post('/admin/noticias/crear', [\App\Http\Controllers\AdminController::cla
 
 Route::get('/admin/noticias/{id}', [\App\Http\Controllers\AdminController::class, 'details'])->whereNumber('id');
 
-
+Route::post('/noticias/{id}/eliminar', [\App\Http\Controllers\AdminController::class, 'processDelete']);
