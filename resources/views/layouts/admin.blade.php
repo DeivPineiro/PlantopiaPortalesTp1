@@ -35,7 +35,12 @@
 
 
 <main>
+  @if(\Session::has('status.message'))
 
+  <div class="alert alert-success">{!! \Session::get('status.message') !!}</div>
+
+  @endif
+  
 @yield('content')
 
 </main>

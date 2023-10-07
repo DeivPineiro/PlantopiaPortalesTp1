@@ -1,23 +1,23 @@
 @extends('layouts.admin')
 
-@section('title', 'Crear noticia')
+@section('title', 'Editar: ' . $new->titulo)
 
 @section('content')
 
     <link rel="stylesheet" href="<?= url('css/bootstrap.min.css') ?>">
 
-    <h1>Crear nueva noticia.</h1>
+    <h1 class="text-center p-3">Editar noticia Id: {{ $new->news_id }}</h1>
+    <h2 class="text-center p-3">titulo: {{ Str::limit($new->titulo, 20, '...') }}</h2>
 
     @if ($errors->any())
-        
-            <p class="text-danger m-4">Error en la carga, revise datos ingresados.</p>
-        
+        <p class="text-danger m-4">Error en la carga, revise datos ingresados.</p>
     @endif
 
     <div class="container p-4">
 
-        <form action="{{ url('/admin/noticias/crear') }}" method="POST">
+        <form action="{{ url('/admin/noticias/' . $new->news_id . '/editar') }}" method="POST">
 
+         
             @csrf {{-- Token de seguridad para evitar peticiones de otro sitio --}}
 
 {{-- titulo --}}
@@ -28,7 +28,7 @@
             id="titulo" 
             name="titulo" 
             class="form-control @error('titulo') is-invalid @enderror"
-            value="{{ old('titulo') }}"
+            value="{{ old('titulo', $new->titulo) }}"
             @error('titulo')
             aria-describedby="error-titulo"
             aria-invalid="true"
@@ -47,7 +47,7 @@
             id="subTitulo" 
             name="subTitulo" 
             class="form-control @error('subTitulo') is-invalid @enderror"
-            value="{{ old('subTitulo') }}"
+            value="{{ old('subTitulo', $new->subTitulo) }}"
             @error('subTitulo')
             aria-describedby="error-subTitulo"
             aria-invalid="true"
@@ -69,7 +69,7 @@
                 aria-describedby="error-parrafo"
                 aria-invalid="true"
                 @enderror                   
-            >{{old('parrafo')}}</textarea>
+            >{{old('parrafo', $new->parrafo)}}</textarea>
 
             @if($errors->has('parrafo'))
             <p class="text-danger" id="error-parrafo">{{$errors->first('parrafo')}}</p>
@@ -92,7 +92,7 @@
             id="editor" 
             name="editor" 
             class="form-control @error('editor') is-invalid @enderror"
-            value="{{old('editor')}}"
+            value="{{old('editor', $new->editor)}}"
             @error('editor')
             aria-describedby="error-editor"
             aria-invalid="true"
@@ -111,7 +111,7 @@
             id="fecha_creacion" 
             name="fecha_creacion" 
             class="form-control @error('fecha_creacion') is-invalid @enderror"
-            value="{{old('fecha_creacion')}}">
+            value="{{old('fecha_creacion', $new->fecha_creacion)}}">
 
             @if($errors->has('fecha_creacion'))
             <p class="text-danger" id="error-fecha_creacion">{{$errors->first('fecha_creacion')}}</p>
@@ -125,14 +125,14 @@
             id="publicado" 
             name="publicado" 
             class="form-control"
-            value="{{old('publicado')}}"
+            value="{{old('publicado', $new->publicado)}}"
             >
             
             @if($errors->has('publicado'))
             <p class="text-danger" id="error-publicado">{{$errors->first('publicado')}}</p>
             @endif
 
-            <button type="submit" class="btn btn-primary my-4">Crear noticia</button>
+            <button type="submit" class="btn btn-primary my-4">Editar</button>
 
         </form>
 
