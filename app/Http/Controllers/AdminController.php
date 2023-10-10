@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Noticia;
+use App\Models\Topico;
 use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class AdminController extends Controller
     public function index()
     {
 
-        $news = Noticia::all();
+        $news = Noticia::with('topico')->get();// Para ahorrar queryes al momento de buscar datos relacionados de la tabla news
 
         return view('admin.index', ['news' => $news]);
     }
@@ -28,7 +29,8 @@ class AdminController extends Controller
     public function create()
     {
 
-        return view('admin.create');
+        return view('admin.create',['topico'=>Topico::all()]);
+        
     }
 
     public function creating(Request $request)
@@ -55,7 +57,8 @@ class AdminController extends Controller
             'parrafo' => 'required|min:1',
             'fecha_creacion' => 'required',
             'editor' => 'required',
-            'publicado' => 'required'
+            'publicado' => 'required',
+            'topico_id'=> 'required|exists:topicos'
 
         ], [
             'titulo.required' => 'El titulo es necesario.',
@@ -66,7 +69,9 @@ class AdminController extends Controller
             'parrafo.min' => 'El parrafo tiene un minimo de :min caracteres',
             'fecha_creacion.required' => 'La fecha de creación es necesario.',
             'editor.required' => 'El editor es necesario.',
-            'publicado.required' => 'Es necesario saber si esta publicado al momento de crearlo.'
+            'publicado.required' => 'Es necesario saber si esta publicado al momento de crearlo.',
+            'topico_id.required'=> 'Es necesario saber el topico',
+            'topico_id.exists'=> 'Debe de existir el topico'
         ]);
 
         Noticia::create($data);
@@ -77,7 +82,9 @@ class AdminController extends Controller
     public function edit(int $id)
     {
 
-        return view('admin.edit', ['new' => Noticia::findOrFail($id)]);
+       
+
+        return view('admin.edit', ['new' => Noticia::findOrFail($id)],['topico'=>Topico::all()]);
     }
 
     public function editing(int $id, Request $request)
@@ -91,7 +98,8 @@ class AdminController extends Controller
             'parrafo' => 'required|min:1',
             'fecha_creacion' => 'required',
             'editor' => 'required',
-            'publicado' => 'required'
+            'publicado' => 'required',
+            'topico_id'=> 'required|exists:topicos'
 
         ], [
             'titulo.required' => 'El titulo es necesario.',
@@ -102,12 +110,21 @@ class AdminController extends Controller
             'parrafo.min' => 'El parrafo tiene un minimo de :min caracteres',
             'fecha_creacion.required' => 'La fecha de creación es necesario.',
             'editor.required' => 'El editor es necesario.',
-            'publicado.required' => 'Es necesario saber si esta publicado al momento de crearlo.'
+            'publicado.required' => 'Es necesario saber si esta publicado al momento de crearlo.',
+            'topico_id.required'=> 'Es necesario saber el topico',
+            'topico_id.exists'=> 'Debe de existir el topico'
         ]);
 
         $data = $request->except('_token');
 
-        $new->update($request->except('_token'));
+        if($request->hasFile('img'))
+        {
+            // la guarda... obvio
+           $data['img'] = $request->file('img')->store('imgs');
+
+        }
+
+        $new->update($data);
 
 
         return redirect('/admin/noticias')

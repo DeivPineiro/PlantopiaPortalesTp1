@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\Noticia
@@ -39,7 +40,14 @@ class Noticia extends Model
 
     protected $table = "noticias";
     protected $primaryKey = "news_id";
-    protected $fillable = ['titulo', 'subTitulo', 'parrafo', 'img','descripcion_img', 'fecha_creacion', 'editor', 'publicado' ];
+    protected $fillable = ['titulo', 'subTitulo', 'parrafo', 'img','descripcion_img', 'fecha_creacion', 'editor','topico_id', 'publicado' ];
     
+    public function topico(): BelongsTo
+    {
+
+        return $this->belongsTo(Topico::class, 'topico_id'/*FK*/, 'topico_id' );
+
+    }
+
 
 }

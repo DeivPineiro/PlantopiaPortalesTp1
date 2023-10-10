@@ -68,11 +68,12 @@
                 <p class="text-danger" id="error-img">{{ $errors->first('img') }}</p>
             @endif
 
+
             {{-- descripcion Img --}}
 
             <label for="descripcion_img" class="form-label">Descripción imagen</label>
-            <input type="text" id="descripcion_img" name="descripcion_img" class="form-control @error('descripcion_img') is-invalid @enderror"
-                value="{{ old('descripcion_img') }}"
+            <input type="text" id="descripcion_img" name="descripcion_img"
+                class="form-control @error('descripcion_img') is-invalid @enderror" value="{{ old('descripcion_img') }}"
                 @error('descripcion_img')
             aria-describedby="error-descripcion_img"
             aria-invalid="true"
@@ -96,10 +97,27 @@
                 <p class="text-danger" id="error-editor">{{ $errors->first('editor') }}</p>
             @endif
 
+            {{-- Topico --}}
+
+            <label for="topico_id" class="form-label">Topico</label>
+            <select name="topico_id" id="topico_id" class="form-control">
+
+                @foreach ($topico as $t)
+                    <option value="{{ $t->topico_id }}" @if (old('topico_id') == $t->topico_id) selected @endif>
+
+                        {{ $t->nombre }}
+
+                    </option>
+                @endforeach
+
+
+            </select>
+
+          
             {{-- fecha_creacion --}}
 
             <label for="fecha_creacion" class="form-label">fecha creación</label>
-            <input type="text" id="fecha_creacion" name="fecha_creacion"
+            <input type="date" id="fecha_creacion" name="fecha_creacion"
                 class="form-control @error('fecha_creacion') is-invalid @enderror" value="{{ old('fecha_creacion') }}">
 
             @if ($errors->has('fecha_creacion'))

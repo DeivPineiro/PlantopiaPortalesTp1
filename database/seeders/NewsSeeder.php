@@ -24,6 +24,7 @@ class NewsSeeder extends Seeder
                 'fecha_creacion' => '2023-09-23',
                 'editor'=> 'David Piñeiro',
                 'publicado'=> true,
+                'topico_id'=> 1, 
                 'created_at' => now(), 
                 'updated_at' => now(),
 
@@ -35,6 +36,7 @@ class NewsSeeder extends Seeder
                 'fecha_creacion' => '2023-09-23',
                 'editor'=> 'David Piñeiro',
                 'publicado'=> false,
+                'topico_id'=> 2,
                 'created_at' => now(), 
                 'updated_at' => now(),
 
