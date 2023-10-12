@@ -6,6 +6,8 @@
 
     <link rel="stylesheet" href="<?= url('css/bootstrap.min.css') ?>">
 
+
+
     <h1>Crear nueva noticia.</h1>
 
     @if ($errors->any())

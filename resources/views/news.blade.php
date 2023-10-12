@@ -28,7 +28,7 @@
     {{-- php artisan storage:link  1:20:00 clase 7--}}
     @if($n->img)
     
-    <img src="{{url('storage/'. $n->img)}}" alt="{{$n->descripcion_img}}">
+    <img src="{{url('storage/'. $n->img)}}" alt="{{$n->descripcion_img}}" class="img-fluid">
                         
     @else
     

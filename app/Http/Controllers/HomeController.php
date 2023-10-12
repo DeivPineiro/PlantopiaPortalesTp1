@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Noticia;
+use App\Models\Usuario;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -14,7 +16,7 @@ class HomeController extends Controller
 
 
     }
-
+   
     public function news()
     {
 
@@ -26,10 +28,13 @@ class HomeController extends Controller
 
     public function logIn()
     {
+        
 
         return view('logIn');
 
     }
+
+   
 
 }
 

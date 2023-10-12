@@ -6,6 +6,7 @@ use App\Models\Noticia;
 use App\Models\Topico;
 use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -37,6 +38,8 @@ class AdminController extends Controller
     {
 
         $data = $request->except(['_token']);
+
+        
 
         //Si hay imagen que cargar 
         //php artisan storage:link
@@ -144,6 +147,15 @@ class AdminController extends Controller
 
       $new = Noticia::findOrFail($id);
       $new->delete();
+
+      //borramos img del storage
+
+      if($new->img && Storage::has($new->img))
+      {
+
+        Storage::delete($new->img);
+
+      }
       return redirect('/admin/noticias')
           ->with('status.message', 'La noticia <b>' . e($new->titulo) .'</b> fue eliminada');
 

@@ -4,5 +4,7 @@
 
 <h1>Home</h1>
 
+{{-- {{@dd($_SESSION)}} --}}
+
 @endsection
 
